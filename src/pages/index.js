@@ -1,19 +1,60 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
 
-import Layout from '../components/layout'
-import Image from '../components/image'
+const sanityClient = require('../../sanity/node_modules/@sanity/client');
 
-const IndexPage = () => (
-  <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const client = sanityClient({
+  projectId: process.env.SANITY_ID,
+  dataset: process.env.SANITY_DATASET,
+  useCdn: true
+});
 
-export default IndexPage
+class IndexPage extends React.Component {
+
+  state = {
+    person: {
+      name: '',
+      id: ''
+    }
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.getData();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+    getData = async () => {
+      const query = `*[_type == "person"] { _id, title, name } [0...1]`;
+      const data = await client.fetch(query).then(response => response);
+      if(this._isMounted) {
+        this.setState({
+          person: {
+            name: data[0].name,
+            id: data[0]._id
+          }
+        })
+      }
+    }
+
+    /*
+        Creating this class property so that we can
+        successfully abort any fetch requests to prevent
+        any memory leaks when using this.setState({ }) in combination
+        with data being returned from a 3rd party API
+    */
+    _isMounted = false;
+
+  render() {
+    return (
+      <div>
+        <h1>name: { this.state.person.name }</h1>
+        <h2>id: { this.state.person.id }</h2>
+      </div>
+    );
+  }
+}
+
+export default IndexPage;
