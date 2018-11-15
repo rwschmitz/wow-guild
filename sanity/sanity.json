@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "project": {
+    "name": "step-dad"
+  },
+  "api": {
+    "projectId": "g8mb60b3",
+    "dataset": "production"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    }
+  ]
+}
