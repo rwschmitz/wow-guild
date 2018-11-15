@@ -29,13 +29,16 @@ class IndexPage extends React.Component {
     getData = async () => {
       const query = `*[_type == "person"] { _id, title, name } [0...1]`;
       const data = await client.fetch(query).then(response => response);
+
+      const [ { name, _id } ] = [ data[0] ];
+      
       if(this._isMounted) {
         this.setState({
           person: {
-            name: data[0].name,
-            id: data[0]._id
+            name,
+            id: _id
           }
-        })
+        });
       }
     }
 
