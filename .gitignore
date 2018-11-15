@@ -55,6 +55,7 @@ typings/
 .env
 .env.development
 .env.production
+netlify.toml
 
 # gatsby files
 .cache/
