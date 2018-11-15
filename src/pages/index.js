@@ -1,6 +1,8 @@
 import React from 'react';
 
-const sanityClient = require('../../sanity/node_modules/@sanity/client');
+import sanityClient from '../../sanity/node_modules/@sanity/client'
+
+// const sanityClient = require('../../sanity/node_modules/@sanity/client');
 
 const client = sanityClient({
   projectId: process.env.SANITY_ID,

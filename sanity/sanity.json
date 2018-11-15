@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "step-dad"
+    "name": "step-dad",
+    "basePath": "../src"
   },
   "api": {
     "projectId": "g8mb60b3",
