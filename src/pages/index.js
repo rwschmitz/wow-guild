@@ -1,6 +1,6 @@
 import React from 'react';
 
-import sanityClient from '../../sanity/node_modules/@sanity/client'
+import sanityClient from '@sanity/client'
 
 // const sanityClient = require('../../sanity/node_modules/@sanity/client');
 
