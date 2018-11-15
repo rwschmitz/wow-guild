@@ -5,8 +5,10 @@ import sanityClient from '@sanity/client'
 // const sanityClient = require('../../sanity/node_modules/@sanity/client');
 
 const client = sanityClient({
-  projectId: process.env.SANITY_ID,
-  dataset: process.env.SANITY_DATASET,
+  // projectId: process.env.SANITY_ID,
+  // dataset: process.env.SANITY_DATASET,
+  projectId: 'g8mb60b3',
+  dataset: 'production',
   useCdn: true
 });
 
