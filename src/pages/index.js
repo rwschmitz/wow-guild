@@ -1,12 +1,7 @@
 import React from 'react';
-
 import sanityClient from '@sanity/client'
 
-// const sanityClient = require('../../sanity/node_modules/@sanity/client');
-
 const client = sanityClient({
-  // projectId: process.env.SANITY_ID,
-  // dataset: process.env.SANITY_DATASET,
   projectId: 'g8mb60b3',
   dataset: 'production',
   useCdn: true
@@ -17,7 +12,8 @@ class IndexPage extends React.Component {
   state = {
     person: {
       name: '',
-      id: ''
+      id: '',
+      raidInstance: ''
     }
   }
 
@@ -31,15 +27,17 @@ class IndexPage extends React.Component {
   }
 
     getData = async () => {
-      const query = `*[_type == "person"] { _id, title, name } [0...1]`;
+      const query = `*[_type == "bossKills"] { _id, bossName, raidInstance }`;
       const data = await client.fetch(query).then(response => response);
+      console.log(data);
 
-      const [ { name, _id } ] = [ data[0] ];
+      const [ { bossName, raidInstance, _id } ] = [ data[0] ];
       
       if(this._isMounted) {
         this.setState({
           person: {
-            name,
+            name: bossName,
+            raidInstance,
             id: _id
           }
         });
@@ -59,6 +57,7 @@ class IndexPage extends React.Component {
       <div>
         <h1>name: { this.state.person.name }</h1>
         <h2>id: { this.state.person.id }</h2>
+        <h2>id: { this.state.person.raidInstance }</h2>
       </div>
     );
   }
