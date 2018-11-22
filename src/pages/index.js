@@ -29,10 +29,9 @@ class IndexPage extends React.Component {
     getData = async () => {
       const query = `*[_type == "bossKills"] { _id, bossName, raidInstance }`;
       const data = await client.fetch(query).then(response => response);
-      console.log(data);
 
       const [ { bossName, raidInstance, _id } ] = [ data[0] ];
-      
+
       if(this._isMounted) {
         this.setState({
           person: {
