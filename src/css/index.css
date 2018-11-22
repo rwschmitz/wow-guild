@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,800|Montserrat:300,400,800');
+@import './links.css';
+@import './nav.css';
+
+:root {
+  --copyFont: 'Montserrat', sans-serif;
+  --headingFont: 'Fira Sans', sans-serif;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--headingFont);
+  font-weight: 800;
+}
+p, a, span {
+  font-family: var(--copyFont);
+}

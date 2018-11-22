@@ -1,0 +1,9 @@
+.link {
+  color: var(--white);
+  font-weight: 300;
+  padding-right: 2rem;
+  text-decoration: none;
+}
+.link:last-child {
+  padding-right: 0;
+}

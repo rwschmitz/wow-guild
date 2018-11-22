@@ -1,5 +1,9 @@
 import React from 'react';
-import sanityClient from '@sanity/client'
+import sanityClient from '@sanity/client';
+import AppBar from '@material-ui/core/AppBar';
+import { Link } from 'gatsby';
+import '../css/index.css';
+import Theme from '../components/Theme';
 
 const client = sanityClient({
   projectId: 'g8mb60b3',
@@ -53,11 +57,20 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>name: { this.state.person.name }</h1>
-        <h2>id: { this.state.person.id }</h2>
-        <h2>id: { this.state.person.raidInstance }</h2>
-      </div>
+      <Theme>
+        <AppBar className="nav" position="sticky" elevation={ 2 }>
+          <Link className="link" href="/" to="/">Home</Link>
+          <Link className="link" href="/about" to="/about">About</Link>
+          <Link className="link" href="/about" to="/about">Pics</Link>
+          <Link className="link" href="/about" to="/about">Apply</Link>
+        </AppBar>
+        <div>
+          <h1>name: { this.state.person.name }</h1>
+          <h2>id: { this.state.person.id }</h2>
+          <h2>id: { this.state.person.raidInstance }</h2>
+          <p>this is some test copy blah blah blah blah</p>
+        </div>
+      </Theme>
     );
   }
 }
