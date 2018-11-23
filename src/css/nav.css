@@ -1,4 +1,9 @@
 .nav {
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 1.5rem;
+}
+@media (min-width: 800px) {
+  .nav {
+    justify-content: flex-end;
+  }
 }

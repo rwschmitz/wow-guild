@@ -1,7 +1,6 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'gatsby';
+import NavBar from '../components/NavBar';
 import '../css/index.css';
 
 const theme = createMuiTheme({
@@ -26,12 +25,7 @@ class About extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={ theme }>
-        <AppBar className="nav" elevation={ 2 } position="sticky">
-          <Link className="link" href="/" to="/">Home</Link>
-          <Link className="link" href="/about" to="/about">About</Link>
-          <Link className="link" href="/about" to="/about">Pics</Link>
-          <Link className="link" href="/about" to="/about">Apply</Link>
-        </AppBar>
+        <NavBar />
         <div>
           <p>this is some test copy blah blah blahsdfsdf blah</p>
         </div>

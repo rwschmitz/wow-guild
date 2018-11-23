@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -31,3 +32,7 @@ class Theme extends React.Component {
 }
 
 export default Theme;
+
+Theme.propTypes = {
+  children: PropTypes.node.isRequired
+}

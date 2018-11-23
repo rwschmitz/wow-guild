@@ -1,8 +1,8 @@
 export default {
-  title: "Boss Kills",  
+  title: "Boss Kills",
   name: "bossKills",
   type: "document",
-  
+
   fields: [
     {
       title: "Boss Name",

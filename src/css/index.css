@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,800|Montserrat:300,400,800');
 @import './links.css';
 @import './nav.css';
+@import './card.css';
 
 :root {
   --copyFont: 'Montserrat', sans-serif;

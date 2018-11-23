@@ -1,9 +1,9 @@
 import React from 'react';
 import sanityClient from '@sanity/client';
-import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'gatsby';
-import '../css/index.css';
 import Theme from '../components/Theme';
+import NavBar from '../components/NavBar';
+import Home from '../components/Home';
+import '../css/index.css';
 
 const client = sanityClient({
   projectId: 'g8mb60b3',
@@ -14,11 +14,7 @@ const client = sanityClient({
 class IndexPage extends React.Component {
 
   state = {
-    person: {
-      name: '',
-      id: '',
-      raidInstance: ''
-    }
+    bossKillInformation: {}
   }
 
   componentDidMount() {
@@ -30,45 +26,48 @@ class IndexPage extends React.Component {
     this._isMounted = false;
   }
 
-    getData = async () => {
-      const query = `*[_type == "bossKills"] { _id, bossName, raidInstance }`;
-      const data = await client.fetch(query).then(response => response);
 
-      const [ { bossName, raidInstance, _id } ] = [ data[0] ];
+  getData = async () => {
+    const query = `*[_type == "bossKills"] { bossName, bossKillImage, raidInstance }`;
+    const data = await client.fetch(query).then(response => response);
 
-      if(this._isMounted) {
-        this.setState({
-          person: {
-            name: bossName,
-            raidInstance,
-            id: _id
-          }
-        });
-      }
+    const bossNames = data.map(item => item.bossName);
+    const raidInstances = data.map(item => item.raidInstance);
+
+    const bossKillImageRefs = data.map(item => item.bossKillImage.asset._ref);
+    const bossImageUrlPrefix = 'https://cdn.sanity.io/images/g8mb60b3/production/';
+    const bossKillImageSources = bossKillImageRefs.map(item => item.replace('image-', '').split('-'));
+    const bossKillImageStrings = bossKillImageSources.map(item => `${bossImageUrlPrefix}${item[0]}-${item[1]}.${item[2]}`);
+
+    const bossKillInformation = {
+      bossName: bossNames,
+      bossKillImages: bossKillImageStrings,
+      raidInstance: raidInstances,
     }
 
-    /*
-        Creating this class property so that we can
-        successfully abort any fetch requests to prevent
-        any memory leaks when using this.setState({ }) in combination
-        with data being returned from a 3rd party API
-    */
-    _isMounted = false;
+    if(this._isMounted) {
+      this.setState({
+        bossKillInformation
+      });
+    }
+  }
+
+  /*
+      Creating this class property so that we can
+      successfully abort any fetch requests to prevent
+      any memory leaks when using this.setState({ }) in combination
+      with data being returned from a 3rd party API
+  */
+  _isMounted = false;
 
   render() {
     return (
       <Theme>
-        <AppBar className="nav" position="sticky" elevation={ 2 }>
-          <Link className="link" href="/" to="/">Home</Link>
-          <Link className="link" href="/about" to="/about">About</Link>
-          <Link className="link" href="/about" to="/about">Pics</Link>
-          <Link className="link" href="/about" to="/about">Apply</Link>
-        </AppBar>
-        <div>
-          <h1>name: { this.state.person.name }</h1>
-          <h2>id: { this.state.person.id }</h2>
-          <h2>id: { this.state.person.raidInstance }</h2>
-          <p>this is some test copy blah blah blah blah</p>
+        <NavBar />
+        <div style={ { display: 'flex', flexWrap: 'wrap', maxWidth: '1200px', margin: '0 auto' } }>
+          <Home
+            bossKillInformation={ this.state.bossKillInformation }
+          />
         </div>
       </Theme>
     );
