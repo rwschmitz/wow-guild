@@ -24,6 +24,7 @@
     "gatsby-source-sanity": "^0.5.1",
     "gatsby-transformer-sharp": "^2.1.4",
     "prop-types": "^15.6.2",
+    "puppeteer": "^1.10.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",

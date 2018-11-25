@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import Home from '../components/Home';
 import '../css/index.css';
 
+
 const client = sanityClient({
   projectId: 'g8mb60b3',
   dataset: 'production',
