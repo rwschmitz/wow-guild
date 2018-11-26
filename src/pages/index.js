@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import Home from '../components/Home';
 import '../css/index.css';
 
+// import Raiders from '../components/Raiders';
 
 const client = sanityClient({
   projectId: 'g8mb60b3',
@@ -70,6 +71,7 @@ class IndexPage extends React.Component {
             bossKillInformation={ this.state.bossKillInformation }
           />
         </div>
+        {/* <Raiders /> */}
       </Theme>
     );
   }

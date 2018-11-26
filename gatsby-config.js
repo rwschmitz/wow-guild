@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Step Dad Guild Website',
+    title: 'Step Dad Guild Website'
   },
   plugins: [
     {

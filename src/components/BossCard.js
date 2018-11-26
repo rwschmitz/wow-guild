@@ -51,5 +51,5 @@ class BossCard extends React.Component {
 export default BossCard;
 
 BossCard.propTypes = {
-  bossKillInformation: PropTypes.objectOf(PropTypes.shape()).isRequired
+  bossKillInformation: PropTypes.shape().isRequired
 }

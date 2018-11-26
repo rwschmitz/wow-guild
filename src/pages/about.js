@@ -29,6 +29,7 @@ class About extends React.Component {
         <div>
           <p>this is some test copy blah blah blahsdfsdf blah</p>
         </div>
+        { console.log(this) }
       </MuiThemeProvider>
     );
   }
